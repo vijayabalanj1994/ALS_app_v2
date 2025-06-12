@@ -9,8 +9,8 @@ from Home_Window.UI.home_window import Ui_MainWindow
 from Home_Window.utils.pil2pixmap import pil2pixmap
 from ALS_Diagnostic_Model.src.utils.predict_image import predict_image
 from ALS_Diagnostic_Model.src.utils.load_model import load_model
-from ALS_Diagnostic_Model.src.utils.gradcam import extract_cam_and_image, generate_gradcam_overlay, generate_gradcam_circles
-
+from ALS_Diagnostic_Model.src.utils.gradcam import extract_cam_and_image, generate_gradcam_overlay, generate_gradcam_circles, generate_gradcam_focus_mask
+from Dataset.utils import get_metadata
 
 class GuiHome(qtw.QMainWindow, Ui_MainWindow):
 
@@ -51,10 +51,10 @@ class GuiHome(qtw.QMainWindow, Ui_MainWindow):
                     )
                 )
 
-
-                self.lb_image_no.setText("No Image No.")
-                self.lb_case_id.setText("No Case ID")
-                self.lb_region.setText("No Region")
+                image_no, case_id, region = get_metadata(self.input_image_path)
+                self.lb_image_no.setText(image_no)
+                self.lb_case_id.setText(case_id)
+                self.lb_region.setText(region)
 
                 self.lb_status.setText("Status: Ready to Run Analysis.")
                 self.lb_status.setStyleSheet("""
@@ -120,9 +120,18 @@ class GuiHome(qtw.QMainWindow, Ui_MainWindow):
             )
         )
 
+        # self.s_filter_slider.setValue(80)
+        # filtered_image = generate_gradcam_circles(self.cam, self.reconstructed_image.copy(), threshold=0.8)
+        # pixmap = pil2pixmap(filtered_image)
+        # self.lb_filtered_image.setPixmap(
+        #     pixmap.scaled(
+        #         self.lb_filtered_image.size()
+        #     )
+        # )
+
         self.s_filter_slider.setValue(80)
-        filtered_image = generate_gradcam_circles(self.cam, self.reconstructed_image.copy(), threshold=0.8)
-        pixmap = pil2pixmap(filtered_image)
+        masked_image = generate_gradcam_focus_mask(self.cam, self.reconstructed_image.copy(), threshold=0.8)
+        pixmap = pil2pixmap(masked_image)
         self.lb_filtered_image.setPixmap(
             pixmap.scaled(
                 self.lb_filtered_image.size()
@@ -142,8 +151,18 @@ class GuiHome(qtw.QMainWindow, Ui_MainWindow):
     def update_cam_mask(self):
         self.lb_filtered_image.clear()
         threshold = self.s_filter_slider.value()/100
-        filtered_image = generate_gradcam_circles(self.cam, self.reconstructed_image.copy(), threshold=threshold)
-        pixmap = pil2pixmap(filtered_image)
+
+
+        # filtered_image = generate_gradcam_circles(self.cam, self.reconstructed_image.copy(), threshold=threshold)
+        # pixmap = pil2pixmap(filtered_image)
+        # self.lb_filtered_image.setPixmap(
+        #     pixmap.scaled(
+        #         self.lb_filtered_image.size()
+        #     )
+        # )
+
+        masked_image = generate_gradcam_focus_mask(self.cam, self.reconstructed_image.copy(), threshold=threshold)
+        pixmap = pil2pixmap(masked_image)
         self.lb_filtered_image.setPixmap(
             pixmap.scaled(
                 self.lb_filtered_image.size()

@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1208, 709)
+        MainWindow.resize(1209, 744)
         MainWindow.setMaximumSize(QSize(16777215, 16777215))
         font = QFont()
         font.setPointSize(12)
@@ -77,11 +77,9 @@ class Ui_MainWindow(object):
         self.lb_region.setObjectName(u"lb_region")
         self.lb_region.setMinimumSize(QSize(200, 30))
         self.lb_region.setMaximumSize(QSize(16777215, 30))
-        font2 = QFont()
-        font2.setPointSize(12)
-        font2.setBold(False)
-        self.lb_region.setFont(font2)
-        self.lb_region.setStyleSheet(u"")
+        self.lb_region.setFont(font1)
+        self.lb_region.setStyleSheet(u"color: #FFC107;\n"
+"")
 
         self.gridLayout_2.addWidget(self.lb_region, 12, 0, 1, 1)
 
@@ -89,10 +87,10 @@ class Ui_MainWindow(object):
         self.label_18.setObjectName(u"label_18")
         self.label_18.setMinimumSize(QSize(0, 30))
         self.label_18.setMaximumSize(QSize(16777215, 30))
-        font3 = QFont()
-        font3.setPointSize(14)
-        font3.setBold(True)
-        self.label_18.setFont(font3)
+        font2 = QFont()
+        font2.setPointSize(14)
+        font2.setBold(True)
+        self.label_18.setFont(font2)
         self.label_18.setStyleSheet(u"QLabel {\n"
 "    background-color: #FFC107;  /* Amber (Material Design amber 500) */\n"
 "    color: white;               /* White text */\n"
@@ -114,8 +112,9 @@ class Ui_MainWindow(object):
         self.lb_image_no.setObjectName(u"lb_image_no")
         self.lb_image_no.setMinimumSize(QSize(200, 30))
         self.lb_image_no.setMaximumSize(QSize(16777215, 30))
-        self.lb_image_no.setFont(font2)
-        self.lb_image_no.setStyleSheet(u"")
+        self.lb_image_no.setFont(font1)
+        self.lb_image_no.setStyleSheet(u"color: #FFC107;\n"
+"")
 
         self.gridLayout_2.addWidget(self.lb_image_no, 8, 0, 1, 1)
 
@@ -130,7 +129,7 @@ class Ui_MainWindow(object):
         self.label_19.setObjectName(u"label_19")
         self.label_19.setMinimumSize(QSize(0, 30))
         self.label_19.setMaximumSize(QSize(16777215, 30))
-        self.label_19.setFont(font3)
+        self.label_19.setFont(font2)
         self.label_19.setStyleSheet(u"QLabel {\n"
 "    background-color: #FFC107;  /* Amber (Material Design amber 500) */\n"
 "    color: white;               /* White text */\n"
@@ -145,8 +144,9 @@ class Ui_MainWindow(object):
         self.lb_case_id.setObjectName(u"lb_case_id")
         self.lb_case_id.setMinimumSize(QSize(200, 30))
         self.lb_case_id.setMaximumSize(QSize(16777215, 30))
-        self.lb_case_id.setFont(font2)
-        self.lb_case_id.setStyleSheet(u"")
+        self.lb_case_id.setFont(font1)
+        self.lb_case_id.setStyleSheet(u"color: #FFC107;\n"
+"")
 
         self.gridLayout_2.addWidget(self.lb_case_id, 10, 0, 1, 1)
 
@@ -154,7 +154,10 @@ class Ui_MainWindow(object):
         self.lb_input_image.setObjectName(u"lb_input_image")
         self.lb_input_image.setMinimumSize(QSize(200, 200))
         self.lb_input_image.setMaximumSize(QSize(200, 200))
-        self.lb_input_image.setFont(font2)
+        font3 = QFont()
+        font3.setPointSize(12)
+        font3.setBold(False)
+        self.lb_input_image.setFont(font3)
         self.lb_input_image.setFrameShape(QFrame.WinPanel)
         self.lb_input_image.setScaledContents(True)
         self.lb_input_image.setAlignment(Qt.AlignCenter)
@@ -222,7 +225,7 @@ class Ui_MainWindow(object):
         self.label_20.setObjectName(u"label_20")
         self.label_20.setMinimumSize(QSize(0, 30))
         self.label_20.setMaximumSize(QSize(16777215, 30))
-        self.label_20.setFont(font3)
+        self.label_20.setFont(font2)
         self.label_20.setStyleSheet(u"QLabel {\n"
 "    background-color: #4CAF50;  /* Medium green */\n"
 "    color: white;               /* White text */\n"
@@ -263,7 +266,7 @@ class Ui_MainWindow(object):
         self.label_14.setObjectName(u"label_14")
         self.label_14.setMinimumSize(QSize(0, 30))
         self.label_14.setMaximumSize(QSize(16777215, 30))
-        self.label_14.setFont(font3)
+        self.label_14.setFont(font2)
         self.label_14.setStyleSheet(u"QLabel {\n"
 "    background-color: #4CAF50;  /* Medium green */\n"
 "    color: white;               /* White text */\n"
@@ -306,7 +309,7 @@ class Ui_MainWindow(object):
         self.label_13.setObjectName(u"label_13")
         self.label_13.setMinimumSize(QSize(0, 30))
         self.label_13.setMaximumSize(QSize(16777215, 30))
-        self.label_13.setFont(font3)
+        self.label_13.setFont(font2)
         self.label_13.setStyleSheet(u"QLabel {\n"
 "    background-color: #4CAF50;  /* Medium green */\n"
 "    color: white;               /* White text */\n"
@@ -341,7 +344,7 @@ class Ui_MainWindow(object):
         self.lb_filtered_image.setObjectName(u"lb_filtered_image")
         self.lb_filtered_image.setMinimumSize(QSize(400, 400))
         self.lb_filtered_image.setMaximumSize(QSize(400, 400))
-        self.lb_filtered_image.setFont(font2)
+        self.lb_filtered_image.setFont(font3)
         self.lb_filtered_image.setFrameShape(QFrame.WinPanel)
         self.lb_filtered_image.setScaledContents(True)
         self.lb_filtered_image.setAlignment(Qt.AlignCenter)
@@ -383,7 +386,7 @@ class Ui_MainWindow(object):
 
         self.label_8 = QLabel(self.groupBox_2)
         self.label_8.setObjectName(u"label_8")
-        self.label_8.setFont(font3)
+        self.label_8.setFont(font2)
         self.label_8.setStyleSheet(u"QLabel {\n"
 "	background-color:#2196F3 ;\n"
 "    color: black;               /* Black text */\n"
@@ -408,7 +411,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1208, 27))
+        self.menubar.setGeometry(QRect(0, 0, 1209, 34))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")

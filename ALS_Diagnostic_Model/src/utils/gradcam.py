@@ -49,3 +49,28 @@ def generate_gradcam_circles(cam, original_image, threshold=0.8):
         draw.ellipse([(cx - r, cy - r), (cx + r, cy + r)], outline="yellow", width=3)
 
     return original_image
+
+
+def generate_gradcam_focus_mask(cam, original_image, threshold=0.8, alpha=0.6):
+
+    if torch.is_tensor(cam):
+        cam = cam.detach().cpu().squeeze().numpy()
+
+    # Resize and normalize CAM
+    cam_resized = Image.fromarray(np.uint8(cam * 255)).resize(original_image.size, Image.BILINEAR)
+    cam_array = np.array(cam_resized).astype(np.float32) / 255.0
+
+    # Create alpha mask: 0 for high activation, alpha for low
+    alpha_mask = np.where(cam_array < threshold, int(255 * alpha), 0).astype(np.uint8)
+
+    # Convert to RGBA
+    image_rgba = original_image.convert("RGBA")
+
+    # Create black image with variable alpha (based on CAM)
+    black_overlay = Image.new("RGBA", image_rgba.size, (0, 0, 0, 0))
+    black_overlay.putalpha(Image.fromarray(alpha_mask))
+
+    # Composite: overlay the transparent black mask on top of original image
+    result = Image.alpha_composite(image_rgba, black_overlay)
+
+    return result
